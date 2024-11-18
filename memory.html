@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Memory - ENI ALL</title>
+    <link rel="stylesheet" href="memoryStyle.css" />
+  </head>
+
+  <body>
+    <h1>ENI - Memory - Accueil</h1>
+
+    <nav>
+      <ul>
+        <li>Accueil</li>
+        <li>S'inscrire</li>
+        <li>Se connecter</li>
+        <li>Profil</li>
+        <li>Jouer</li>
+      </ul>
+    </nav>
+
+<div class="container">
+    <div id="presentation">
+      <p>
+        Bienvenue sur le site de Memory de l'ENI. Venez jouer avec nous et faites
+        le meilleur score possible.
+      </p>
+
+      <h4>Règles du jeu</h4>
+      <ul>
+        <li>Retournez deux cartes. Si les images sont identiques, le jeu laisse les cartes visibles.</li>
+        <li>Si les images sont différentes, les cartes se retournent faces cachées là où elles étaient.</li>
+        <li>La partie est terminée lorsque toutes les cartes ont été assemblées par paires.</li>
+    </ul>
+
+
+    <p>Si vous voulez vous souvenir de votre score, inscrivez-vous via le lien "S'inscrire"<br />
+        Le jeu garde les <strong>10 meilleurs</strong> scores.<br />
+        Si vous voulez relancer une partie, cliquez sur la <strong>barre d'espace</strong>.
+    </p>
+    </div>
+</div>
+
+
+    <fieldset>
+      <legend>Inscription nouvel utilisateur</legend>
+      <form id="userForm">
+        <!-- Use name -->
+        <label for="username">Nom d'utilisateur:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          pattern="[a-za-Z]+"
+        /><br /><br />
+
+        <!-- Email -->
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          required
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        /><br /><br />
+
+        <!-- Password -->
+        <label for="password">Mot de passe :</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$"
+        /><br /><br />
+
+        <!-- Confirm password-->
+        <label for="confirmPassword">Confirmer le mot de passe :</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$"
+        /><br /><br />
+
+        <!-- Button -->
+        <button type="reset">Annuler</button>
+        <a href="index.html">Page d'accueil</a>
+        <button type="submit">Valider</button>
+      </form>
+    </fieldset>
+  </body>
+</html>

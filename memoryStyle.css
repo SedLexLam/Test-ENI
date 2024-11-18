@@ -1,0 +1,41 @@
+body {
+    height:max-content;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top left, rgb(0, 225, 255), transparent),
+      linear-gradient(to top right, blue, transparent),
+      linear-gradient(red, transparent),
+      linear-gradient(to bottom left, greenyellow, transparent),
+      linear-gradient(to bottom right, purple, transparent);
+    background-blend-mode: screen;
+  }
+  
+
+nav {
+  width: fit-content;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+}
+nav li {
+  border: solid red 1px;
+  padding: 10px;
+  background-color: rgb(25, 216, 216, 0.2);
+}
+
+fieldset {
+  width: 50%;
+}
+
+#presentation {
+  width: 50%;
+  padding: 1%;
+  border: solid grey 1px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}

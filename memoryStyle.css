@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 body {
     height:max-content;
     display: flex;

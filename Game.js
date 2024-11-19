@@ -12,13 +12,17 @@ function init() {
     image.style.display = "none";
   });
 
-// Introduciton du bouton backFace
+// Introduction du bouton backFace
   var cards = document.getElementsByClassName("backFace");
   Array.from(cards).forEach((card) => {
     card.addEventListener("click", flipCard);
   });
 }
 
+let liste = new Array;
+for (i = 0; i < 6; i++) {
+
+}
 
 // Quand on appuie sur le bouton "Jouer" : affiche les cartes + background
 function show() {
@@ -52,6 +56,9 @@ function show() {
   });
 }
 
+
+
+
 // Différentes variables du jeu
 let flippedCardCount = 0;
 let wonCardCount = 0;
@@ -59,6 +66,7 @@ let card1 = 0;
 let card2 = 0;
 
 // Fonction pour retourner les cartes
+
 function flipCard() {
   if (flippedCardCount < 2) {
     //Première carte
@@ -140,6 +148,7 @@ function flipCard() {
     }
   });
   }
+
  
 
 

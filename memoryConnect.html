@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Memory - ENI ALL</title>
+    <link rel="stylesheet" href="memoryStyle.css" />
+    <script src="Game.js"></script>
+  </head>
+
+  <body>
+    <h1>ENI - Memory - Accueil</h1>
+
+    <nav>
+      <ul>
+        <li><a href="memory.html">Accueil</a></li>
+        <li><a href="memoryIns.html">S'inscrire</a></li>
+        <li><a href="memoryConnect.html">Se connecter</a></li>
+        <li><a href="memoryProfil.html">Profil</a></li>
+        <li><a href="memoryGame.html">Jouer</a></li>
+      </ul>
+    </nav>
+
+    
+    <fieldset>
+        <legend><strong>Connexion </strong></legend>
+        <form id="userForm">
+          <!-- Use name -->
+          <label for="username">Nom d'utilisateur :</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            pattern="[a-za-Z]+{3,}$"
+          /><br /><br />
+  
+          <!-- Password -->
+          <label for="password">Mot de passe :</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+          /><br /><br />
+          
+        </form>
+        <!-- Button -->
+        <button type="reset">Annuler</button>
+        <a href="memory.html">Page d'accueil</a>
+        <button type="submit">Valider</button>
+      </fieldset>
+  </body>
+</html>

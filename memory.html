@@ -3,6 +3,7 @@
   <head>
     <title>Memory - ENI ALL</title>
     <link rel="stylesheet" href="memoryStyle.css" />
+    <script src="Game.js"></script>
   </head>
 
   <body>
@@ -10,11 +11,11 @@
 
     <nav>
       <ul>
-        <li>Accueil</li>
-        <li>S'inscrire</li>
-        <li>Se connecter</li>
-        <li>Profil</li>
-        <li>Jouer</li>
+        <li><a href="memory.html">Accueil</a></li>
+        <li><a href="memoryIns.html">S'inscrire</a></li>
+        <li><a href="memoryConnect.html">Se connecter</a></li>
+        <li><a href="memoryProfil.html">Profil</a></li>
+        <li><a href="memoryGame.html">Jouer</a></li>
       </ul>
     </nav>
 
@@ -32,6 +33,7 @@
         <li>La partie est terminée lorsque toutes les cartes ont été assemblées par paires.</li>
     </ul>
 
+<img src="ressources/memory-legume/memory_detail.png" alt="Image du jeu">
 
     <p>Si vous voulez vous souvenir de votre score, inscrivez-vous via le lien "S'inscrire"<br />
         Le jeu garde les <strong>10 meilleurs</strong> scores.<br />
@@ -39,56 +41,7 @@
     </p>
     </div>
 </div>
+  
 
-
-    <fieldset>
-      <legend>Inscription nouvel utilisateur</legend>
-      <form id="userForm">
-        <!-- Use name -->
-        <label for="username">Nom d'utilisateur:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          pattern="[a-za-Z]+"
-        /><br /><br />
-
-        <!-- Email -->
-        <label for="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          required
-          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-        /><br /><br />
-
-        <!-- Password -->
-        <label for="password">Mot de passe :</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$"
-        /><br /><br />
-
-        <!-- Confirm password-->
-        <label for="confirmPassword">Confirmer le mot de passe :</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          required
-          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,}$"
-        /><br /><br />
-
-        <!-- Button -->
-        <button type="reset">Annuler</button>
-        <a href="index.html">Page d'accueil</a>
-        <button type="submit">Valider</button>
-      </form>
-    </fieldset>
   </body>
 </html>

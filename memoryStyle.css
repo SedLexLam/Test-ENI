@@ -1,9 +1,10 @@
 html {
-    height: 100%;
-}
+    height:100%;
+    overflow:scroll
+    }
 
 body {
-    height:max-content;
+  height: 100%;
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top left, rgb(0, 225, 255), transparent),
@@ -17,29 +18,96 @@ body {
 
 nav {
   width: fit-content;
-}
+  padding: 2%;
+    }
 
 nav ul {
   display: flex;
-  gap: 20px;
+  list-style-type: none;
+  padding-left: 0;
+  gap: 10px;
+      
 }
 nav li {
   border: solid red 1px;
   padding: 10px;
-  background-color: rgb(25, 216, 216, 0.2);
+  border-radius: 10%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  background-color: rgb(25, 216, 216, 0.8);
 }
 
 fieldset {
-  width: 50%;
+     
+  width: 40%;
+  margin: 2%;
+  background-color:rgb(137, 255, 216,0.8);
+  font-weight: 200;
+  padding-top: 3%;  
+  padding-bottom: 3%;
+  border-radius: 10%;
 }
+
 
 #presentation {
   width: 50%;
   padding: 1%;
   border: solid grey 1px;
+  background-color: rgb(137, 255, 216,0.8);
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
   display: flex;
   justify-content: center;
+  }
+
+.presentation img {
+    object-fit: contain;
+    }
+
+legend {
+    border: solid black 2px;
+    background-color: rgb(186, 121, 248);
+    border-radius: 5%;
+    font-size: 150%;
 }
+
+#tablePic {
+  width : max-content;
+  height: max-content;
+  padding: 2%;
+  background-color: rgb(137, 255, 216,0.8);
+  border-radius: 5%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;  
+  
+}
+
+.line {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction:row;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 1%;
+}
+
+.gameOn {
+  width: 10%;
+  height:5%;
+  border: solid black 2px;
+}
+
+.frontFace, .backFace, .discarded, .displayed {
+  width: 150px;
+  border: solid black 1px;
+  border-radius: 5%;
+  transition : 1s ease;
+}
+

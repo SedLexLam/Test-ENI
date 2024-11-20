@@ -3,7 +3,8 @@
   <head>
     <title>Memory - ENI ALL</title>
     <link rel="stylesheet" href="memoryStyle.css" />
-    <script src="Game.js"></script>
+    
+    <script src="Data.js"></script>
   </head>
 
   <body>
@@ -23,26 +24,34 @@
         <legend><strong>Inscription nouvel utilisateur </strong></legend>
         <form id="userForm">
           <!-- Use name -->
+           <div>
           <label for="username">Nom d'utilisateur :</label>
           <input
             type="text"
             id="username"
             name="username"
+            autofocus
             required
-            pattern="[a-za-Z]+{3,}$"
-          /><br /><br />
+            pattern="[a-zA-Z]{3,}$"
+            title="Saisissez un nom d'utilisateur"
+           /><br /><br />
+        </div>
   
           <!-- Email -->
+          <div>
           <label for="email">Email :</label>
           <input
             type="text"
             id="email"
             name="email"
             required
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            title="Saisissez un email"
           /><br /><br />
-  
+        </div>
+
           <!-- Password -->
+          <div> 
           <label for="password">Mot de passe :</label>
           <input
             type="password"
@@ -50,9 +59,12 @@
             name="password"
             required
             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+            title="Saisissez un mot de passe avec au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial (6 caractères min.)"
           /><br /><br />
-  
+        </div>
+
           <!-- Confirm password-->
+          <div>
           <label for="confirmPassword">Confirmer le mot de passe :</label>
           <input
             type="password"
@@ -60,11 +72,19 @@
             name="confirmPassword"
             required
             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+            title="Confirmez le mot de passe"
           /><br /><br />
-         
-        </form>
+        </div>
+      
          <!-- Button -->
-         <button type="reset">Annuler</button>
+          <div class="btnform">
+         <button type="reset" class="btn">Annuler</button>
          <a href="memory.html">Page d'accueil</a>
-         <button type="submit">Valider</button>
+         <button type="submit" class="btn">Valider</button>
+        </div>
+
+        </form>
+
       </fieldset>
+  </body>
+</html>

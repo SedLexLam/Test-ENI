@@ -1,0 +1,130 @@
+html {
+    height:150%;
+    overflow:scroll
+    }
+
+body {
+  height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top left, rgb(0, 225, 255), transparent),
+      linear-gradient(to top right, blue, transparent),
+      linear-gradient(red, transparent),
+      linear-gradient(to bottom left, greenyellow, transparent),
+      linear-gradient(to bottom right, purple, transparent);
+    background-blend-mode: screen;
+  }
+  
+
+nav {
+  width: fit-content;
+  padding: 2%;
+    }
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  gap: 10px;
+      
+}
+nav li {
+  border: solid red 1px;
+  padding: 10px;
+  border-radius: 10%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  background-color: rgb(25, 216, 216, 0.8);
+}
+
+fieldset {
+     
+  width: 40%;
+  margin: 2%;
+  background-color:rgb(137, 255, 216,0.8);
+  font-weight: 200;
+  padding-top: 3%;  
+  padding-bottom: 3%;
+  border-radius: 10%;
+}
+
+
+#presentation {
+  width: 50%;
+  padding: 1%;
+  border: solid grey 1px;
+  background-color: rgb(137, 255, 216,0.8);
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+    width: 100%;
+  display: flex;
+  justify-content: center;
+  }
+
+.presentation img {
+    object-fit: contain;
+    }
+
+legend {
+    border: solid black 2px;
+    background-color: rgb(186, 121, 248);
+    border-radius: 5%;
+    font-size: 150%;
+}
+
+#tablePic {
+    height: max-content;
+  padding: 2%;
+  background-color: rgb(137, 255, 216,0.8);
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row; 
+  flex-wrap: wrap; 
+  }
+
+@media (max-width: 799px) {
+#tablePic {
+  width : 80%;
+  
+}
+}
+
+@media (min-width: 800px) {
+    #tablePic {
+        width : 50%;
+    }
+}
+
+.memoryCard, .won  {
+    width: 25%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.memoryCard, .won img {
+    object-fit: contain;
+}
+
+.gameOn {
+  width: 10%;
+  height:5%;
+  border: solid black 2px;
+}
+
+.frontFace, .backFace, .discarded, .displayed {
+  width: 100%;
+  height: 100%;
+  border: solid black 1px;
+  border-radius: 5%;
+  transition : 1s ease;
+}
+

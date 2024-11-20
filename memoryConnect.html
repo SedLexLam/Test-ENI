@@ -3,7 +3,7 @@
   <head>
     <title>Memory - ENI ALL</title>
     <link rel="stylesheet" href="memoryStyle.css" />
-    <script src="Game.js"></script>
+    
   </head>
 
   <body>
@@ -22,18 +22,22 @@
     
     <fieldset>
         <legend><strong>Connexion </strong></legend>
-        <form id="userForm">
+        <form id="Connect">
           <!-- Use name -->
+           <div>
           <label for="username">Nom d'utilisateur :</label>
           <input
             type="text"
             id="username"
             name="username"
+            autofocus
             required
             pattern="[a-za-Z]+{3,}$"
           /><br /><br />
+        </div>
   
           <!-- Password -->
+           <div>
           <label for="password">Mot de passe :</label>
           <input
             type="password"
@@ -42,12 +46,15 @@
             required
             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
           /><br /><br />
+        </div>
           
         </form>
         <!-- Button -->
-        <button type="reset">Annuler</button>
+         <div class="btnform">
+        <button type="reset" class="btn">Annuler</button>
         <a href="memory.html">Page d'accueil</a>
-        <button type="submit">Valider</button>
+        <button type="submit" class="btn">Valider</button>
+      </div>
       </fieldset>
   </body>
 </html>

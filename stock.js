@@ -5,68 +5,23 @@ function init() {
   document.getElementById("tablePic").style.display = "none";
   //Introduction du bouton jouer
   document.getElementById("gameOn").addEventListener("click", show);
-
+  
   // Cacher toutes les images
   var images = document.querySelectorAll("img");
   images.forEach(function (image) {
     image.style.display = "none";
   });
 
-  let i = 0;
-  while (i < 2) {
-    let liste = new Set();
-    let max = 6; //à changer plus tard en fonction du nombre de cartes dans le dossier
-
-    // Fonction pour créer un tableau de valeurs aléatoires entre 1 et max
-    function cardsOrder(min, max) {
-      return Math.floor(Math.random() * max) + 1;
-    }
-
-    while (liste.size != max) {
-      let i = cardsOrder(0, max);
-      liste.add(i);
-    }
-    console.log(liste);
-
-    // Créer des memoryCard avec 2 faces et les placer dans tablePic
-    let tablePic = document.getElementById("tablePic");
-    liste.forEach(function (element) {
-      let div = document.createElement("div");
-      div.setAttribute("class", "memoryCard");
-      div.setAttribute("value", element);
-      let frontFace = document.createElement("img");
-      frontFace.setAttribute("class", "frontFace");
-      frontFace.src = `/ressources/memory-legume/${element}.svg`;
-      div.appendChild(frontFace);
-
-      let backFace = document.createElement("img");
-      backFace.setAttribute("class", "backFace");
-      backFace.src = "/ressources/question.svg";
-      div.appendChild(backFace);
-      tablePic.appendChild(div);
-    });
-    i++;
-  }
-  // Introduction du bouton backFace
+// Introduction du bouton backFace
   var cards = document.getElementsByClassName("backFace");
   Array.from(cards).forEach((card) => {
     card.addEventListener("click", flipCard);
   });
 }
 
-// Différentes variables du jeu
-let flippedCardCount = 0;
-let wonCardCount = 0;
-let card1 = 0;
-let card2 = 0;
-let score = 0;
-
 // Quand on appuie sur le bouton "Jouer" : affiche les cartes + background
 function show() {
-  score = 0;
-  flippedCardCount = 0;
-  wonCardCount = 0;
-  document.getElementById("tablePic").style.display = "flex";
+  document.getElementById("tablePic").style.display = "block";
 
   // Réinitialiser les cartes gagnées en carte faces visibles et faces mystère
   var wonBefore = document.getElementsByClassName("won");
@@ -95,6 +50,15 @@ function show() {
     showBack.style.display = "block";
   });
 }
+
+
+
+
+// Différentes variables du jeu
+let flippedCardCount = 0;
+let wonCardCount = 0;
+let card1 = 0;
+let card2 = 0;
 
 // Fonction pour retourner les cartes
 
@@ -131,10 +95,9 @@ function flipCard() {
       // Après avoir retourné 2 cartes :
       // Si les 2 cartes retournent la même image
       if (card1 === card2) {
-        setTimeout(function () {
         console.log("BRAVO !");
-        score += 10;
-        console.log("Score:", score);
+        wonCardCount++;
+        console.log("Nombre de cartes gagnée :", wonCardCount);
         card1 = 0;
         card2 = 0;
         document.getElementById("card1").setAttribute("class", "won");
@@ -142,36 +105,29 @@ function flipCard() {
         document.getElementById("card1").removeAttribute("id");
         document.getElementById("card2").removeAttribute("id");
         flippedCardCount = 0;
-        wonCardCount++;
-        console.log("Nombre de cartes gagnée :", wonCardCount);
-        if (wonCardCount === 6) { 
-          alert("Vous avez gagné ! Votre score est de = " + score);
-          }
-        }, 500);
 
         // Si les 2 cartes sont différentes
       } else {
         // Délai de 1sec avant de retourner les cartes différentes
-        setTimeout(function () {
-          card1 = 0;
-          card2 = 0;
-          score -= 2;
-          console.log("Score:", score);
-          document.getElementById("card1").removeAttribute("id");
-          document.getElementById("card2").removeAttribute("id");
-          var flipped = document.getElementsByClassName("frontFace");
-          Array.from(flipped).forEach(function (hide) {
-            hide.style.display = "none";
-          });
-          var boum = document.getElementsByClassName("backFace");
-          Array.from(boum).forEach(function (again) {
-            again.style.display = "block";
+        setTimeout(function() {
+        card1 = 0;
+        card2 = 0;
+        document.getElementById("card1").removeAttribute("id");
+        document.getElementById("card2").removeAttribute("id");
+        var flipped = document.getElementsByClassName("frontFace");
+        Array.from(flipped).forEach(function (hide) {
+          hide.style.display = "none";
+        });
+        var boum = document.getElementsByClassName("backFace");
+        Array.from(boum).forEach(function (again) {
+          again.style.display = "block";
           });
           flippedCardCount = 0;
         }, 1000);
       }
     }
-  }
+    
+  } 
   // Fonction pour laisser retournées les cartes gagnées
   var wonCard = document.getElementsByClassName("won");
   Array.from(wonCard).forEach(function (change) {
@@ -186,4 +142,80 @@ function flipCard() {
       secondChild.style.display = "none";
     }
   });
-}
+  }
+
+ 
+
+
+
+
+  
+
+
+// var showFace = document.getElementsByClassName("frontFace");
+//   Array.from(showFace).forEach(function (face) {
+//       face.style.display = "block";
+//   });
+//   var hideBack = document.getElementsByClassName("backFace");
+//   Array.from(hideBack).forEach(function (back) {
+//       back.style.display = "none";
+//   });
+
+//}
+
+// var imagesGame = document.getElementsByClassName("imgLeg");
+
+// //Loop pour appliquer la fonction Flip à chaque image de Légumes
+// Array.from(imagesGame).forEach(function (imageFl) {
+//     imageFl.addEventListener("click", flip);
+//     })
+
+// }
+
+// // fonction pour montrer l'image mystère à la place de chaque image légume
+// function show () {
+//     var imagesDisplay = document.getElementsByClassName("backFace");
+
+//     Array.from(imagesDisplay).forEach(function (showBack){
+//         showBack.style.display = "block";
+//         showBack.addEventListener("click", flip);
+
+//     })
+// }
+
+//Fonction pour retourner chaque carte mystère et montrer l'image originale à la place
+// function flip(flipImage) {
+
+//  const originalImage = document.getElementsByClassName("imgL");
+// originalImage.forEach(function(imageshow){
+//     imageshow.style.display = "block";
+//  })
+//     const currentImageSrc = flipImage.target.src;
+
+//     if (currentImageSrc !== originalImage) {
+//       flipImage.target.src = originalImage;
+//       flipImage.target.classList.add("flipped");
+//     } else {
+
+//       flipImage.target.src = document.getElementById("imgMyst").src;
+//       flipImage.target.classList.remove("flipped");
+//     }
+//   }
+
+// function init() {
+//     cloneImage();
+// }
+
+// Fonction pour cloner chaque image du memory
+// function cloneImage() {
+
+//     var tablePic = document.getElementById("tablePic");
+
+//     var img1 = document.getElementsByClassName("img");
+
+//     for (var i =0; i < img1.length; i++) {
+//         var clonedImg = img1[i].cloneNode(true);
+//         tablePic.appendChild(clonedImg);
+//     }
+
+//

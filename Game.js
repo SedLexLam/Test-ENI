@@ -1,8 +1,53 @@
 window.onload = init;
 
+// Réserve d'images
+const imageSets = {
+  alphabet: [],
+  animaux: [],
+  animauxAnimes: [],
+  animauxDomestiques: [],
+  chiens: [],
+  dinosaures: [],
+  dinosauresAvecNom: [],
+  legume: []
+};
+
+// Pour remplir chaque tableau avec les images des dossiers ressources
+
+for (let i = 0; i < 25; i++) {
+  imageSets.alphabet.push(`/ressources/alphabet-scrabble/${i}.png`);
+}
+
+for (let i = 0; i < 27; i++) {
+  imageSets.animaux.push(`/ressources/animaux/${i}.webp`);
+}
+
+for (let i = 0; i < 7; i++) {
+  imageSets.animauxAnimes.push(`/ressources/animauxAnimes/${i}.webp`);
+}
+
+for (let i = 0; i < 9; i++) {
+  imageSets.animauxDomestiques.push(`/ressources/animauxdomestiques/${i}.jpg`);
+}
+
+for (let i = 0; i < 22; i++) {
+  imageSets.chiens.push(`/ressources/chiens/${i}.webp`);
+}
+
+for (let i = 0; i < 9; i++) {
+  imageSets.dinosaures.push(`/ressources/dinosaures/${i}.jpg`);
+}
+
+for (let i = 0; i < 9; i++) {
+  imageSets.dinosauresAvecNom.push(`/ressources/dinosauresAvecNom/${i}.jpg`);
+}
+
+for (let i = 0; i < 5; i++) {
+  imageSets.legume.push(`/ressources/memory-legume/${i}.webp`);
+}
+
 // Fonction Init
 function init() {
-  
   document.getElementById("tablePic").style.display = "none";
   //Introduction du bouton jouer
   document.getElementById("gameOn").addEventListener("click", show);
@@ -12,20 +57,23 @@ function init() {
   images.forEach(function (image) {
     image.style.display = "none";
   });
-  
-  
-  let i = 0;
-  while (i < 2) {
+
+
+  // Pour créer les cartes
+  let userChoice = sessionStorage.getItem(`userChoice`);
+  let boucle = 0;
+  while (boucle < 2) {
     let liste = new Set();
     let max = 6; //à changer plus tard en fonction du nombre de cartes dans le dossier
 
-  // Fonction pour créer les cartes  
+    let selectedCardSet = imageSets[userChoice];
+
     // Créer un tableau de valeurs aléatoires entre 1 et max
     function cardsOrder(min, max) {
       return Math.floor(Math.random() * max) + 1;
     }
 
-    while (liste.size != max) {
+    while (liste.size < max) {
       let i = cardsOrder(0, max);
       liste.add(i);
     }
@@ -39,7 +87,8 @@ function init() {
       divCard.setAttribute("value", element);
       let frontFace = document.createElement("img");
       frontFace.setAttribute("class", "frontFace");
-      frontFace.src = `/ressources/memory-legume/${element}.svg`;
+      frontFace.src = selectedCardSet[element];
+      //frontFace.src = `/ressources/memory-legume/${element}.svg`;
       divCard.appendChild(frontFace);
 
       let backFace = document.createElement("img");
@@ -48,7 +97,7 @@ function init() {
       divCard.appendChild(backFace);
       tablePic.appendChild(divCard);
     });
-    i++;
+    boucle++;
   }
   // Introduction du bouton backFace
   var cards = document.getElementsByClassName("backFace");
@@ -63,7 +112,7 @@ let wonCardCount = 0;
 let card1 = 0;
 let card2 = 0;
 let score = 0;
-let loggedInUsername = sessionStorage.getItem("loggedInUsername")
+let loggedInUsername = sessionStorage.getItem("loggedInUsername");
 
 // Quand on appuie sur le bouton "Jouer" : affiche les cartes + background
 function show() {
@@ -71,10 +120,14 @@ function show() {
   flippedCardCount = 0;
   wonCardCount = 0;
   document.getElementById("tablePic").style.display = "flex";
-  if (loggedInUsername === null)
-  { alert("Vous ne pourrez pas conserver votre score si vous n'êtes pas connecté.");
+  if (loggedInUsername === null) {
+    alert(
+      "Vous ne pourrez pas conserver votre score si vous n'êtes pas connecté."
+    );
   } else {
-  alert(`Bienvenue ${loggedInUsername} ! Es-tu prêt à réaliser le plus haut score du Memory ?`);
+    alert(
+      `Bienvenue ${loggedInUsername} ! Es-tu prêt à réaliser le plus haut score du Memory ?`
+    );
   }
 
   // Réinitialiser les cartes gagnées en carte faces visibles et faces mystère
@@ -141,23 +194,25 @@ function flipCard() {
       // Si les 2 cartes retournent la même image
       if (card1 === card2) {
         setTimeout(function () {
-        console.log("BRAVO !");
-        score += 10;
-        console.log("Score:", score);
-        card1 = 0;
-        card2 = 0;
-        document.getElementById("card1").setAttribute("class", "won");
-        document.getElementById("card2").setAttribute("class", "won");
-        document.getElementById("card1").removeAttribute("id");
-        document.getElementById("card2").removeAttribute("id");
-        flippedCardCount = 0;
-        wonCardCount++;
-        console.log("Nombre de cartes gagnée :", wonCardCount);
-        if (wonCardCount === 6) { 
-          alert(`Tu as gagné ${loggedInUsername}! Ton score est de = ` + score);
-          if (loggedInUsername != null) {
-            localStorage.setItem(`score${loggedInUsername}`, score);
-          }
+          console.log("BRAVO !");
+          score += 10;
+          console.log("Score:", score);
+          card1 = 0;
+          card2 = 0;
+          document.getElementById("card1").setAttribute("class", "won");
+          document.getElementById("card2").setAttribute("class", "won");
+          document.getElementById("card1").removeAttribute("id");
+          document.getElementById("card2").removeAttribute("id");
+          flippedCardCount = 0;
+          wonCardCount++;
+          console.log("Nombre de cartes gagnée :", wonCardCount);
+          if (wonCardCount === 6) {
+            alert(
+              `Tu as gagné ${loggedInUsername}! Ton score est de = ` + score
+            );
+            if (loggedInUsername != null) {
+              localStorage.setItem(`score${loggedInUsername}`, score);
+            }
           }
         }, 500);
 

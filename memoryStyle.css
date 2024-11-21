@@ -49,6 +49,10 @@ fieldset {
   border-radius: 10%;
 }
 
+h4 {
+  margin-bottom: 5px;
+}
+
 #presentation {
   width: 50%;
   padding: 1%;
@@ -75,6 +79,7 @@ legend {
   background-color: rgb(186, 121, 248);
   border-radius: 5%;
   font-size: 150%;
+  padding : 5px;
 }
 
 form {
@@ -141,6 +146,18 @@ input:focus {
 
 }
 
+#myData {
+min-width: 20%;
+  width: max-content;
+  min-height: max-content;
+  padding: 2%;
+  background-color: rgba(59, 198, 152, 0.8);
+  border-radius: 5%;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
 #tableScore {
   width: 30%;
   height: max-content;
@@ -168,7 +185,7 @@ input:focus {
   }
 
 .rank {
-  color: rgb(227, 246, 13);
+  color: rgb(234, 219, 4);
   font-size: 1.2em;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
@@ -179,7 +196,7 @@ input:focus {
 }
 
 .userDiv {
-  color: rgb(220, 0, 44);
+  color: rgb(3, 44, 125);
   font-size: 1.2em;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;

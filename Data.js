@@ -6,22 +6,31 @@ function init() {
   if (userForm) {
     userForm.addEventListener("submit", getdata);
   }
-
-    // Pour la fonction connexion
+  // Pour la fonction Force du password
+  let password = document.getElementById("password");
+  if (password) {
+    password.addEventListener("input", passwordStrength)
+  }
+  // Pour la fonction connexion
   let loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", login);
   }
 
   // Afficher le nom d'utilisateur et mon meilleur score
-  let myProfile = document.getElementById("myProfile");
-  if (myProfile) {
+  let myData = document.getElementById("myData");
+  if (myData) {
     function showProfile() {
       let loggedInUsername = sessionStorage.getItem("loggedInUsername");
       let currentUser = document.createElement("div");
+      myData.appendChild(currentUser);
       let myScore = 0;
-      currentUser.innerHTML =
-        "Mon nom d'utilisateur : " + loggedInUsername + "<br>";
+      if (loggedInUsername !== null) {
+        currentUser.innerHTML =
+          "Mon nom d'utilisateur : " + loggedInUsername + "<br>";
+      } else {
+        currentUser.innerHTML = "Non connecté";
+      }
 
       // Vérifier si l'utilisateur connecté a un score déjà enregistré
       for (let i = 0; i < localStorage.length; i++) {
@@ -36,10 +45,19 @@ function init() {
       }
 
       currentUser.innerHTML += "Mon meilleur score : " + myScore;
-      myProfile.appendChild(currentUser);
+      myData.appendChild(currentUser);
     }
     showProfile();
   }
+
+  // Choisir le jeu de cartes
+  let choiceCard = document.getElementById("choiceCard");
+  choiceCard.addEventListener('change', function() {
+    sessionStorage.setItem('userChoice', choiceCard.value);
+  });
+  
+
+
 
   // Pour la fonction afficher le tableau des scores
   let tableScore = document.getElementById("tableScore");
@@ -77,27 +95,30 @@ function init() {
 
       // Créer les div affichant les scores des utilisateurs
       if (users.length > 0) {
-        users.forEach((user) => {
-          let scoreContainer = document.createElement("div");
-          scoreContainer.setAttribute("class", "scoreContainer");
-          scoreList.appendChild(scoreContainer);
+        let topUsers = users.slice(0, 5);
+          topUsers.forEach((user) => {
+            let scoreContainer = document.createElement("div");
+            scoreContainer.setAttribute("class", "scoreContainer");
+            scoreList.appendChild(scoreContainer);
 
-          let rank = document.createElement("div");
-          rank.setAttribute("class", "rank");
-          rankCount++;
-          rank.innerHTML = rankCount;
-          scoreContainer.appendChild(rank);
+            let rank = document.createElement("div");
+            rank.setAttribute("class", "rank");
+            rankCount++;
+            rank.innerHTML = rankCount;
+            scoreContainer.appendChild(rank);
 
-          let userDiv = document.createElement("div");
-          userDiv.setAttribute("class", "userDiv");
-          userDiv.innerHTML = `${user.username}`;
-          scoreContainer.appendChild(userDiv);
+            let userDiv = document.createElement("div");
+            userDiv.setAttribute("class", "userDiv");
+            userDiv.innerHTML = `${user.username}`;
+            scoreContainer.appendChild(userDiv);
 
-          let scoreDiv = document.createElement("div");
-          scoreDiv.setAttribute("class", "scoreDiv");
-          scoreDiv.innerHTML = `${user.score}`;
-          scoreContainer.appendChild(scoreDiv);
-        });
+            let scoreDiv = document.createElement("div");
+            scoreDiv.setAttribute("class", "scoreDiv");
+            scoreDiv.innerHTML = `${user.score}`;
+            scoreContainer.appendChild(scoreDiv);
+            i++;
+          });
+        
       } else {
         scoreList.innerHTML = "Il n'y aucun score disponible.";
       }
@@ -134,15 +155,7 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 
 // Pour afficher la force du password
-let passwordField = document.getElementById("password");
-if (passwordField) {
-  
-
-setTimeout(function passwordStrength() {
-  let password = document.getElementById("password");
-if (password) {
-  password.addEventListener("input", passwordStrength);
-}
+function passwordStrength() {
   let passwordInput = document.getElementById("passwordInput");
 
   let previousStrength = passwordInput.querySelector(".passwordStrength");
@@ -156,7 +169,12 @@ if (password) {
     passwordWeak.setAttribute("id", "weak");
     passwordWeak.innerHTML = "Faible";
     passwordInput.appendChild(passwordWeak);
-  } else if (password.value.length > 9 && /[A-Z]/.test(password.value) && /[0-9]/.test(password.value) && /[^a-zA-Z0-9]/.test(password.value)) {
+  } else if (
+    password.value.length > 9 &&
+    /[A-Z]/.test(password.value) &&
+    /[0-9]/.test(password.value) &&
+    /[^a-zA-Z0-9]/.test(password.value)
+  ) {
     let passwordStrong = document.createElement("div");
     passwordStrong.setAttribute("class", "passwordStrength");
     passwordStrong.setAttribute("id", "strong");
@@ -169,9 +187,8 @@ if (password) {
     passwordMedium.innerHTML = "Moyen";
     passwordInput.appendChild(passwordMedium);
   }
-  
-}, 200)
-}
+} passwordStrength();
+
 
 // Pour vérifier les input et les enregistrer s'ils ne sont pas déjà présents dans le storage
 function getdata(check) {

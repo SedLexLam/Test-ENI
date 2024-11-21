@@ -3,8 +3,8 @@
   <head>
     <title>Memory - ENI ALL</title>
     <link rel="stylesheet" href="memoryStyle.css" />
-    <script src="Data.js"></script> 
-    </head>
+    <script src="Data.js"></script>
+  </head>
 
   <body>
     <h1>ENI - Memory - Accueil</h1>
@@ -18,18 +18,28 @@
         <li><a href="memoryGame.html">Jouer</a></li>
       </ul>
     </nav>
-    <div id="myProfile">
 
-      
+    <div id="myProfile">
+      <div id="myData"></div>
+
+      <h4> Mon choix de cartes à retourner :</h4>
+      <select id="choiceCard">
+        
+        <option value="alphabet-scrabble">Alphabet Scrabble</option>
+        <option value="animaux">Animaux</option>
+        <option value="animauxAnimes">Animaux Animes</option>
+        <option value="animauxdomestiques">Animaux Domestiques</option>
+        <option value="chiens">Chiens</option>
+        <option value="dinosaures">Dinosaures</option>
+        <option value="dinosauresAvecNom">Dinosaures avec nom</option>
+        <option value="memory-legume">Légumes</option>
+      </select>
     </div>
+
     <div class="container">
       <div class="tableScore" id="tableScore">
         <legend><strong> Tableau des meilleurs scores </strong></legend>
-
-        
       </div>
     </div>
-
-
   </body>
 </html>

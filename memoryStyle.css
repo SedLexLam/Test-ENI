@@ -39,7 +39,8 @@ nav li {
 }
 
 fieldset {
-  width: 40%;
+  min-width: 40%;
+  width: fit-content;
   margin: 2%;
   background-color: rgb(137, 255, 216, 0.8);
   font-weight: 200;
@@ -91,6 +92,114 @@ input:hover {
 }
 input:focus {
   background-color: rgb(185, 203, 255);
+}
+
+#passwordInput {
+  display: flex;
+  flex-direction: row;
+}
+
+.passwordStrength {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  padding:1px;
+  border-radius: 5%;
+}
+
+#weak {
+  width: 30%;
+  height: 20px;
+  background-color: red;
+}
+
+#medium {
+  width: 60%;
+  height: 20px;
+  background-color: yellow;
+  color: black;
+}
+
+#strong {
+  width: 90%;
+  height: 20px;
+  background-color: green;
+}
+
+#myProfile {
+  min-width: 20%;
+  width: max-content;
+  min-height: max-content;
+  padding: 2%;
+  background-color: rgb(137, 255, 216, 0.8);
+  border-radius: 5%;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+
+}
+
+#tableScore {
+  width: 30%;
+  height: max-content;
+  min-height: 200px;
+  padding: 2%;
+  background-color: rgb(137, 255, 216, 0.8);
+  border-radius: 5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap:5px;
+  }
+
+  .scoreContainer {
+  width: fit-content;
+  padding: 2px;
+  border: solid black 2px;
+  background-color: rgb(186, 121, 248);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  }
+
+.rank {
+  color: rgb(227, 246, 13);
+  font-size: 1.2em;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2px;
+  width : 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.userDiv {
+  color: rgb(220, 0, 44);
+  font-size: 1.2em;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2px;
+  width : 60px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.scoreDiv {
+  color: white;
+  font-size: 1.2em;
+  padding: 2px;
+  width : 60px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  
 }
 
 #tablePic {

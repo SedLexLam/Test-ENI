@@ -23,7 +23,7 @@
     <fieldset>
         <legend><strong>Inscription nouvel utilisateur </strong></legend>
         <form id="userForm">
-          <!-- Use name -->
+          <!-- Utilisateur -->
            <div>
           <label for="username">Nom d'utilisateur :</label>
           <input
@@ -58,12 +58,15 @@
             id="password"
             name="password"
             required
-            pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
-            title="Saisissez un mot de passe avec au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial (6 caractères min.)"
+            pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+            title="Saisissez un mot de passe avec au moins 1 minuscule, 1 chiffre, 1 caractère spécial (6 caractères min.)"
           /><br /><br />
+          <div id="passwordInput">
+
+          </div><br />
         </div>
 
-          <!-- Confirm password-->
+          <!-- Confirmation password-->
           <div>
           <label for="confirmPassword">Confirmer le mot de passe :</label>
           <input
@@ -71,12 +74,13 @@
             id="confirmPassword"
             name="confirmPassword"
             required
-            pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+            pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^\w\d\s:])([^\s]){6,}$"
             title="Confirmez le mot de passe"
-          /><br /><br />
+          /><br />         
+          <br />
         </div>
       
-         <!-- Button -->
+         <!-- Boutons -->
           <div class="btnform">
          <button type="reset" class="btn">Annuler</button>
          <a href="memory.html">Page d'accueil</a>

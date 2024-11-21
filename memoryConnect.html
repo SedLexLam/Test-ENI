@@ -3,7 +3,7 @@
   <head>
     <title>Memory - ENI ALL</title>
     <link rel="stylesheet" href="memoryStyle.css" />
-    
+    <script src="Data.js"></script>
   </head>
 
   <body>
@@ -19,42 +19,41 @@
       </ul>
     </nav>
 
-    
     <fieldset>
-        <legend><strong>Connexion </strong></legend>
-        <form id="Connect">
-          <!-- Use name -->
-           <div>
-          <label for="username">Nom d'utilisateur :</label>
+      <legend><strong>Connexion </strong></legend>
+      <form id="loginForm">
+        <!-- Utilisateur -->
+        <div>
+          <label for="loginUsername">Nom d'utilisateur :</label>
           <input
             type="text"
-            id="username"
-            name="username"
+            id="loginUsername"
+            name="loginUsername"
             autofocus
             required
-            pattern="[a-za-Z]+{3,}$"
+            pattern="[a-zA-Z]{3,}$"
           /><br /><br />
         </div>
-  
-          <!-- Password -->
-           <div>
-          <label for="password">Mot de passe :</label>
+
+        <!-- Password -->
+        <div>
+          <label for="loginPassword">Mot de passe :</label>
           <input
             type="password"
-            id="password"
-            name="password"
+            id="loginPassword"
+            name="loginPassword"
             required
-            pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,}$"
+            pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^\w\d\s:])([^\s]){6,}$"
           /><br /><br />
         </div>
-          
-        </form>
-        <!-- Button -->
-         <div class="btnform">
-        <button type="reset" class="btn">Annuler</button>
-        <a href="memory.html">Page d'accueil</a>
-        <button type="submit" class="btn">Valider</button>
-      </div>
-      </fieldset>
+
+        <!-- Boutons -->
+        <div class="btnform">
+          <button type="reset" class="btn">Annuler</button>
+          <a href="memory.html">Page d'accueil</a>
+          <button type="submit" class="btn">Valider</button>
+        </div>
+      </form>
+    </fieldset>
   </body>
 </html>

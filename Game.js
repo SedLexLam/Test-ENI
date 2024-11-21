@@ -2,6 +2,7 @@ window.onload = init;
 
 // Fonction Init
 function init() {
+  
   document.getElementById("tablePic").style.display = "none";
   //Introduction du bouton jouer
   document.getElementById("gameOn").addEventListener("click", show);
@@ -11,13 +12,15 @@ function init() {
   images.forEach(function (image) {
     image.style.display = "none";
   });
-
+  
+  
   let i = 0;
   while (i < 2) {
     let liste = new Set();
     let max = 6; //à changer plus tard en fonction du nombre de cartes dans le dossier
 
-    // Fonction pour créer un tableau de valeurs aléatoires entre 1 et max
+  // Fonction pour créer les cartes  
+    // Créer un tableau de valeurs aléatoires entre 1 et max
     function cardsOrder(min, max) {
       return Math.floor(Math.random() * max) + 1;
     }
@@ -31,19 +34,19 @@ function init() {
     // Créer des memoryCard avec 2 faces et les placer dans tablePic
     let tablePic = document.getElementById("tablePic");
     liste.forEach(function (element) {
-      let div = document.createElement("div");
-      div.setAttribute("class", "memoryCard");
-      div.setAttribute("value", element);
+      let divCard = document.createElement("div");
+      divCard.setAttribute("class", "memoryCard");
+      divCard.setAttribute("value", element);
       let frontFace = document.createElement("img");
       frontFace.setAttribute("class", "frontFace");
       frontFace.src = `/ressources/memory-legume/${element}.svg`;
-      div.appendChild(frontFace);
+      divCard.appendChild(frontFace);
 
       let backFace = document.createElement("img");
       backFace.setAttribute("class", "backFace");
       backFace.src = "/ressources/question.svg";
-      div.appendChild(backFace);
-      tablePic.appendChild(div);
+      divCard.appendChild(backFace);
+      tablePic.appendChild(divCard);
     });
     i++;
   }
@@ -60,6 +63,7 @@ let wonCardCount = 0;
 let card1 = 0;
 let card2 = 0;
 let score = 0;
+let loggedInUsername = sessionStorage.getItem("loggedInUsername")
 
 // Quand on appuie sur le bouton "Jouer" : affiche les cartes + background
 function show() {
@@ -67,6 +71,11 @@ function show() {
   flippedCardCount = 0;
   wonCardCount = 0;
   document.getElementById("tablePic").style.display = "flex";
+  if (loggedInUsername === null)
+  { alert("Vous ne pourrez pas conserver votre score si vous n'êtes pas connecté.");
+  } else {
+  alert(`Bienvenue ${loggedInUsername} ! Es-tu prêt à réaliser le plus haut score du Memory ?`);
+  }
 
   // Réinitialiser les cartes gagnées en carte faces visibles et faces mystère
   var wonBefore = document.getElementsByClassName("won");
@@ -145,7 +154,10 @@ function flipCard() {
         wonCardCount++;
         console.log("Nombre de cartes gagnée :", wonCardCount);
         if (wonCardCount === 6) { 
-          alert("Vous avez gagné ! Votre score est de = " + score);
+          alert(`Tu as gagné ${loggedInUsername}! Ton score est de = ` + score);
+          if (loggedInUsername != null) {
+            localStorage.setItem(`score${loggedInUsername}`, score);
+          }
           }
         }, 500);
 

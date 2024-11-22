@@ -27,9 +27,9 @@ function init() {
       let myScore = 0;
       if (loggedInUsername !== null) {
         currentUser.innerHTML =
-          "Mon nom d'utilisateur : " + loggedInUsername + "<br>";
+          "Mon nom d'utilisateur : " + loggedInUsername + "<br />";
       } else {
-        currentUser.innerHTML = "Non connecté";
+        currentUser.innerHTML = "Non connecté <br />";
       }
 
       // Vérifier si l'utilisateur connecté a un score déjà enregistré
@@ -51,13 +51,21 @@ function init() {
   }
 
   // Choisir le jeu de cartes
+  sessionStorage.setItem('userChoice', "animaux");
   let choiceCard = document.getElementById("choiceCard");
+  if (choiceCard) {
   choiceCard.addEventListener('change', function() {
     sessionStorage.setItem('userChoice', choiceCard.value);
   });
-  
-
-
+}
+   // Choisir le nombre de cartes
+   sessionStorage.setItem('cardNumber', "6");
+   let choiceCardNumber = document.getElementById("choiceCardNumber");
+   if (choiceCardNumber) {
+    choiceCardNumber.addEventListener('change', function() {
+     sessionStorage.setItem('cardNumber', choiceCardNumber.value);
+   });
+ }
 
   // Pour la fonction afficher le tableau des scores
   let tableScore = document.getElementById("tableScore");
@@ -79,17 +87,19 @@ function init() {
           userScoreCount++;
         }
       }
-      for (let i = 0; i <= userScoreCount; i++) {
+      console.log("Nombre d'utilisateurs avec score : " + userScoreCount);
+
+      // Retrouve les utilisateurs et leurs scores associées et les envoie dans let users
+      for (let i = 1; i <= localStorage.length; i++) {
         let username = localStorage.getItem(`username${i}`);
         let score = localStorage.getItem(`score${username}`);
 
         if (username && score != null) {
+          console.log(`Username: ${username}, Score: ${score}`);
           users.push({ username: username, score: score });
         }
-        console.log("Nombre d'utilisateurs avec score : " + userScoreCount);
-        console.log(`Username: ${username}, Score: ${score}`);
       }
-
+        
       // Classe les scores dans l'ordre décroissant
       users.sort((a, b) => b.score - a.score);
 
@@ -116,7 +126,7 @@ function init() {
             scoreDiv.setAttribute("class", "scoreDiv");
             scoreDiv.innerHTML = `${user.score}`;
             scoreContainer.appendChild(scoreDiv);
-            i++;
+            
           });
         
       } else {
@@ -155,6 +165,8 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 
 // Pour afficher la force du password
+const passwordField = document.querySelector('#password');
+if (passwordField) {
 function passwordStrength() {
   let passwordInput = document.getElementById("passwordInput");
 
@@ -188,7 +200,7 @@ function passwordStrength() {
     passwordInput.appendChild(passwordMedium);
   }
 } passwordStrength();
-
+}
 
 // Pour vérifier les input et les enregistrer s'ils ne sont pas déjà présents dans le storage
 function getdata(check) {
@@ -240,7 +252,6 @@ function getdata(check) {
   alert("Merci pour votre inscription !");
 }
 
-let storedUsername, storedPassword;
 
 // Pour se connecter
 function login(checklogin) {

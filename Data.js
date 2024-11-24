@@ -9,7 +9,7 @@ function init() {
   // Pour la fonction Force du password
   let password = document.getElementById("password");
   if (password) {
-    password.addEventListener("input", passwordStrength)
+    password.addEventListener("input", passwordStrength);
   }
   // Pour la fonction connexion
   let loginForm = document.getElementById("loginForm");
@@ -50,22 +50,23 @@ function init() {
     showProfile();
   }
 
+  // Choisir le nombre de cartes
+  sessionStorage.setItem("cardNumber", "6"); // Valeur par défaut
+  let choiceCardNumber = document.getElementById("choiceCardNumber");
+  if (choiceCardNumber) {
+    choiceCardNumber.style.display = "none";
+    document.getElementById(id = "choiceCardTitle").style.display = "none";
+    choiceCardNumber.addEventListener("change", function (changeCard) {
+      sessionStorage.setItem("cardNumber", choiceCardNumber.value);
+    });
+  }
+
   // Choisir le jeu de cartes
-  sessionStorage.setItem('userChoice', "animaux");
+  sessionStorage.setItem("userChoice", "animaux"); // Valeur par défaut
   let choiceCard = document.getElementById("choiceCard");
   if (choiceCard) {
-  choiceCard.addEventListener('change', function() {
-    sessionStorage.setItem('userChoice', choiceCard.value);
-  });
-}
-   // Choisir le nombre de cartes
-   sessionStorage.setItem('cardNumber', "6");
-   let choiceCardNumber = document.getElementById("choiceCardNumber");
-   if (choiceCardNumber) {
-    choiceCardNumber.addEventListener('change', function() {
-     sessionStorage.setItem('cardNumber', choiceCardNumber.value);
-   });
- }
+    choiceCard.addEventListener("change", activeChoiceCard); 
+  }
 
   // Pour la fonction afficher le tableau des scores
   let tableScore = document.getElementById("tableScore");
@@ -99,36 +100,34 @@ function init() {
           users.push({ username: username, score: score });
         }
       }
-        
+
       // Classe les scores dans l'ordre décroissant
       users.sort((a, b) => b.score - a.score);
 
       // Créer les div affichant les scores des utilisateurs
       if (users.length > 0) {
         let topUsers = users.slice(0, 5);
-          topUsers.forEach((user) => {
-            let scoreContainer = document.createElement("div");
-            scoreContainer.setAttribute("class", "scoreContainer");
-            scoreList.appendChild(scoreContainer);
+        topUsers.forEach((user) => {
+          let scoreContainer = document.createElement("div");
+          scoreContainer.setAttribute("class", "scoreContainer");
+          scoreList.appendChild(scoreContainer);
 
-            let rank = document.createElement("div");
-            rank.setAttribute("class", "rank");
-            rankCount++;
-            rank.innerHTML = rankCount;
-            scoreContainer.appendChild(rank);
+          let rank = document.createElement("div");
+          rank.setAttribute("class", "rank");
+          rankCount++;
+          rank.innerHTML = rankCount;
+          scoreContainer.appendChild(rank);
 
-            let userDiv = document.createElement("div");
-            userDiv.setAttribute("class", "userDiv");
-            userDiv.innerHTML = `${user.username}`;
-            scoreContainer.appendChild(userDiv);
+          let userDiv = document.createElement("div");
+          userDiv.setAttribute("class", "userDiv");
+          userDiv.innerHTML = `${user.username}`;
+          scoreContainer.appendChild(userDiv);
 
-            let scoreDiv = document.createElement("div");
-            scoreDiv.setAttribute("class", "scoreDiv");
-            scoreDiv.innerHTML = `${user.score}`;
-            scoreContainer.appendChild(scoreDiv);
-            
-          });
-        
+          let scoreDiv = document.createElement("div");
+          scoreDiv.setAttribute("class", "scoreDiv");
+          scoreDiv.innerHTML = `${user.score}`;
+          scoreContainer.appendChild(scoreDiv);
+        });
       } else {
         scoreList.innerHTML = "Il n'y aucun score disponible.";
       }
@@ -136,6 +135,67 @@ function init() {
     showScore();
   }
 }
+
+// FIN INIT
+
+function activeChoiceCard () {
+  sessionStorage.setItem("userChoice", choiceCard.value);
+  if (choiceCardNumber) {
+    let userChoice = sessionStorage.getItem(`userChoice`);
+    switch (userChoice) {
+      case "alphabet":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "block";
+        document.getElementById("15card").style.display = "block";
+        break;
+
+      case "animaux":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "block";
+        document.getElementById("15card").style.display = "block";
+        break;
+
+      case "animauxAnimes":
+        document.getElementById("9card").style.display = "none";
+        document.getElementById("12card").style.display = "none";
+        document.getElementById("15card").style.display = "none";
+        break;
+
+      case "animauxDomestiques":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "none";
+        document.getElementById("15card").style.display = "none";
+        break;
+
+      case "chiens":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "block";
+        document.getElementById("15card").style.display = "block";
+        break;
+
+      case "dinosaures":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "none";
+        document.getElementById("15card").style.display = "none";
+        break;
+
+      case "dinosauresAvecNom":
+        document.getElementById("9card").style.display = "block";
+        document.getElementById("12card").style.display = "none";
+        document.getElementById("15card").style.display = "none";
+        break;
+
+      case "legumes":
+        document.getElementById("9card").style.display = "none";
+        document.getElementById("12card").style.display = "none";
+        document.getElementById("15card").style.display = "none";
+        break;
+
+    }
+    document.getElementById(id = "choiceCardTitle").style.display = "block";
+    choiceCardNumber.style.display = "block";
+  }
+};
 
 // Variables du localStorage
 let userCount = 0;
@@ -165,41 +225,42 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 
 // Pour afficher la force du password
-const passwordField = document.querySelector('#password');
+const passwordField = document.querySelector("#password");
 if (passwordField) {
-function passwordStrength() {
-  let passwordInput = document.getElementById("passwordInput");
+  function passwordStrength() {
+    let passwordInput = document.getElementById("passwordInput");
 
-  let previousStrength = passwordInput.querySelector(".passwordStrength");
-  if (previousStrength) {
-    previousStrength.remove();
-  }
+    let previousStrength = passwordInput.querySelector(".passwordStrength");
+    if (previousStrength) {
+      previousStrength.remove();
+    }
 
-  if (password.value.length < 7) {
-    let passwordWeak = document.createElement("div");
-    passwordWeak.setAttribute("class", "passwordStrength");
-    passwordWeak.setAttribute("id", "weak");
-    passwordWeak.innerHTML = "Faible";
-    passwordInput.appendChild(passwordWeak);
-  } else if (
-    password.value.length > 9 &&
-    /[A-Z]/.test(password.value) &&
-    /[0-9]/.test(password.value) &&
-    /[^a-zA-Z0-9]/.test(password.value)
-  ) {
-    let passwordStrong = document.createElement("div");
-    passwordStrong.setAttribute("class", "passwordStrength");
-    passwordStrong.setAttribute("id", "strong");
-    passwordStrong.innerHTML = "Fort";
-    passwordInput.appendChild(passwordStrong);
-  } else {
-    let passwordMedium = document.createElement("div");
-    passwordMedium.setAttribute("class", "passwordStrength");
-    passwordMedium.setAttribute("id", "medium");
-    passwordMedium.innerHTML = "Moyen";
-    passwordInput.appendChild(passwordMedium);
+    if (password.value.length < 7) {
+      let passwordWeak = document.createElement("div");
+      passwordWeak.setAttribute("class", "passwordStrength");
+      passwordWeak.setAttribute("id", "weak");
+      passwordWeak.innerHTML = "Faible";
+      passwordInput.appendChild(passwordWeak);
+    } else if (
+      password.value.length > 9 &&
+      /[A-Z]/.test(password.value) &&
+      /[0-9]/.test(password.value) &&
+      /[^a-zA-Z0-9]/.test(password.value)
+    ) {
+      let passwordStrong = document.createElement("div");
+      passwordStrong.setAttribute("class", "passwordStrength");
+      passwordStrong.setAttribute("id", "strong");
+      passwordStrong.innerHTML = "Fort";
+      passwordInput.appendChild(passwordStrong);
+    } else {
+      let passwordMedium = document.createElement("div");
+      passwordMedium.setAttribute("class", "passwordStrength");
+      passwordMedium.setAttribute("id", "medium");
+      passwordMedium.innerHTML = "Moyen";
+      passwordInput.appendChild(passwordMedium);
+    }
   }
-} passwordStrength();
+  passwordStrength();
 }
 
 // Pour vérifier les input et les enregistrer s'ils ne sont pas déjà présents dans le storage
@@ -251,7 +312,6 @@ function getdata(check) {
   // Afficher un message de confirmation
   alert("Merci pour votre inscription !");
 }
-
 
 // Pour se connecter
 function login(checklogin) {

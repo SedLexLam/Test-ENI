@@ -1,47 +1,49 @@
 window.onload = init;
 
+const imageSets = {
+  alphabet: [],
+  animaux: [],
+  animauxAnimes: [],
+  animauxDomestiques: [],
+  chiens: [],
+  dinosaures: [],
+  dinosauresAvecNom: [],
+  legume: [],
+};
+
+// Pour remplir chaque tableau avec les images des dossiers ressources
+
+for (let i = 1; i < 27; i++) {
+  imageSets.alphabet.push(`/ressources/alphabet/${i}.png`);
+}
+for (let i = 1; i < 28; i++) {
+  imageSets.animaux.push(`/ressources/animaux/${i}.webp`);
+}
+for (let i = 1; i < 9; i++) {
+  imageSets.animauxAnimes.push(`/ressources/animauxAnimes/${i}.webp`);
+}
+for (let i = 1; i < 11; i++) {
+  imageSets.animauxDomestiques.push(
+    `/ressources/animauxDomestiques/${i}.jpg`
+  );
+}
+for (let i = 1; i < 24; i++) {
+  imageSets.chiens.push(`/ressources/chiens/${i}.webp`);
+}
+for (let i = 1; i < 11; i++) {
+  imageSets.dinosaures.push(`/ressources/dinosaures/${i}.jpg`);
+}
+for (let i = 1; i < 11; i++) {
+  imageSets.dinosauresAvecNom.push(`/ressources/dinosauresAvecNom/${i}.jpg`);
+}
+for (let i = 1; i < 7; i++) {
+  imageSets.legume.push(`/ressources/legume/${i}.svg`);
+}
+
+
 // Fonction Init
 function init() {
   // Réserve d'images
-  const imageSets = {
-    alphabet: [],
-    animaux: [],
-    animauxAnimes: [],
-    animauxDomestiques: [],
-    chiens: [],
-    dinosaures: [],
-    dinosauresAvecNom: [],
-    legume: [],
-  };
-
-  // Pour remplir chaque tableau avec les images des dossiers ressources
-
-  for (let i = 1; i < 27; i++) {
-    imageSets.alphabet.push(`/ressources/alphabet/${i}.png`);
-  }
-  for (let i = 1; i < 28; i++) {
-    imageSets.animaux.push(`/ressources/animaux/${i}.webp`);
-  }
-  for (let i = 1; i < 9; i++) {
-    imageSets.animauxAnimes.push(`/ressources/animauxAnimes/${i}.webp`);
-  }
-  for (let i = 1; i < 11; i++) {
-    imageSets.animauxDomestiques.push(
-      `/ressources/animauxDomestiques/${i}.jpg`
-    );
-  }
-  for (let i = 1; i < 24; i++) {
-    imageSets.chiens.push(`/ressources/chiens/${i}.webp`);
-  }
-  for (let i = 1; i < 11; i++) {
-    imageSets.dinosaures.push(`/ressources/dinosaures/${i}.jpg`);
-  }
-  for (let i = 1; i < 11; i++) {
-    imageSets.dinosauresAvecNom.push(`/ressources/dinosauresAvecNom/${i}.jpg`);
-  }
-  for (let i = 1; i < 7; i++) {
-    imageSets.legume.push(`/ressources/legume/${i}.svg`);
-  }
 
   document.getElementById("tablePic").style.display = "none";
   //Introduction du bouton jouer
@@ -53,91 +55,9 @@ function init() {
     image.style.display = "none";
   });
 
-  // Vérifie la présence d'un choix de cartes
-  let userChoice = sessionStorage.getItem(`userChoice`);
-  if (!userChoice) {
-    sessionStorage.setItem("userChoice", "animaux");
-  }
-  let selectedCardSet = imageSets[userChoice];
-
-  // Vérifie la présence d'un nombre de cartes
-  let cardNumber = sessionStorage.getItem(`cardNumber`);
-  if (!cardNumber) {
-    sessionStorage.setItem("cardNumber", "12");
-    cardNumber = 12;
-  } else {
-    cardNumber = parseInt(cardNumber);
-  }
-  let maxCard = cardNumber;
-  let maxImagesNumber = imageSets[userChoice].length;
-
-  // Pour créer les cartes
-  let liste = new Set();
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  // Créer un tableau de valeurs aléatoires entre 1 et max
-  function cardsOrder(min, max) {
-    return Math.floor(Math.random() * max);
-  }
-  if (maxCard <= maxImagesNumber) {
-    while (liste.size < maxCard) {
-      let i = cardsOrder(0, maxImagesNumber);
-      liste.push(i);
-    }
-
-  } else if (maxCard > maxImagesNumber) {
-    
-
-    }
-  }
-  console.log("Liste de base : ", liste);
-
-  // Double chaque élément de la liste pour faire une liste complète
-  let listeDouble = [...liste, ...liste];
-  console.log("Liste doublée : ", listeDouble);
-
-  // Mélanger la liste complète
-  let shuffledList = Array.from(listeDouble);
-  for (let i = shuffledList.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
-  }
-  console.log("Liste complète : ", shuffledList);
-
-  // Créer des memoryCard avec 2 faces et les placer dans tablePic
-  let tablePic = document.getElementById("tablePic");
-  // Mélanger la liste
-
-  shuffledList.forEach(function (element) {
-    let divCard = document.createElement("div");
-    divCard.setAttribute("class", "memoryCard");
-    divCard.setAttribute("value", element);
-    let frontFace = document.createElement("img");
-    frontFace.setAttribute("class", "frontFace");
-    frontFace.src = selectedCardSet[element];
-    //frontFace.src = `/ressources/memory-legume/${element}.svg`;
-    divCard.appendChild(frontFace);
-
-    let backFace = document.createElement("img");
-    backFace.setAttribute("class", "backFace");
-    backFace.src = "/ressources/question.svg";
-    divCard.appendChild(backFace);
-    tablePic.appendChild(divCard);
-  });
-
-  // Introduction du bouton backFace
-  var cards = document.getElementsByClassName("backFace");
-  Array.from(cards).forEach((card) => {
-    card.addEventListener("click", flipCard);
-  });
 }
+
+// FIN INIT
 
 // Différentes variables du jeu
 let flippedCardCount = 0;
@@ -155,7 +75,7 @@ if (!selectedCardNumber) {
 }
 let pairsNumber = selectedCardNumber;
 
-// Quand on appuie sur le bouton "Jouer" : affiche les cartes + background
+// Quand on appuie sur le bouton "Jouer" : efface toute ancienne partie, affiche de nouvelles cartes + background
 function show() {
   score = 0;
   flippedCardCount = 0;
@@ -167,32 +87,76 @@ function show() {
     );
   }
 
-  // Réinitialiser les cartes gagnées en carte faces visibles et faces mystère
-  var wonBefore = document.getElementsByClassName("won");
-  Array.from(wonBefore).forEach(function (newgameCard) {
-    newgameCard.setAttribute("class", "memoryCard");
-  });
+  // Supprime toutes les anciennes cartes
+  let tablePic = document.getElementById("tablePic");
+  tablePic.innerHTML = "";
 
-  var displayedBefore = document.getElementsByClassName("displayed");
-  Array.from(displayedBefore).forEach(function (newgamefront) {
-    newgamefront.setAttribute("class", "frontFace");
-  });
-  var discardedBefore = document.getElementsByClassName("discarded");
-  Array.from(discardedBefore).forEach(function (newgameback) {
-    newgameback.setAttribute("class", "backFace");
-  });
+  
+ // Vérifie la présence d'un choix de cartes
+ let userChoice = sessionStorage.getItem(`userChoice`) || "animaux";
+ let selectedCardSet = imageSets[userChoice];
 
-  // Cache les faces visibles
-  var flipped = document.getElementsByClassName("frontFace");
-  Array.from(flipped).forEach(function (hide) {
-    hide.style.display = "none";
-  });
+ // Vérifie la présence d'un nombre de cartes
+ let maxCard = parseInt(sessionStorage.getItem(`cardNumber`)) || 12;
+ let maxImagesNumber = imageSets[userChoice].length;
 
-  // Montre les faces mystère
-  var imagesBack = document.getElementsByClassName("backFace");
-  Array.from(imagesBack).forEach(function (showBack) {
-    showBack.style.display = "block";
-  });
+ // Pour créer les cartes
+ let liste = new Set();
+
+ 
+ //
+ // Créer un tableau de valeurs aléatoires entre 1 et max
+ function cardsOrder(min, max) {
+   return Math.floor(Math.random() * max);
+ }
+ 
+   while (liste.size < maxCard) {
+     let i = cardsOrder(0, maxImagesNumber);
+     liste.add(i);
+   }
+ 
+   
+ console.log("Liste de base : ", liste);
+
+ // Double chaque élément de la liste pour faire une liste complète
+ let listeDouble = [...liste, ...liste];
+ console.log("Liste doublée : ", listeDouble);
+
+ // Mélanger la liste complète
+ let shuffledList = Array.from(listeDouble);
+ for (let i = shuffledList.length - 1; i > 0; i--) {
+   const j = Math.floor(Math.random() * (i + 1));
+   [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
+ }
+ console.log("Liste complète : ", shuffledList);
+
+ // Créer des memoryCard avec 2 faces et les placer dans tablePic
+ // Mélanger la liste
+
+ shuffledList.forEach(function (element) {
+   let divCard = document.createElement("div");
+   divCard.setAttribute("class", "memoryCard");
+   divCard.setAttribute("value", element);
+   let frontFace = document.createElement("img");
+   frontFace.setAttribute("class", "frontFace");
+   frontFace.style.display = "none";
+   frontFace.src = selectedCardSet[element];
+   //frontFace.src = `/ressources/memory-legume/${element}.svg`;
+   divCard.appendChild(frontFace);
+
+   let backFace = document.createElement("img");
+   backFace.setAttribute("class", "backFace");
+   backFace.src = "/ressources/question.svg";
+   divCard.appendChild(backFace);
+   tablePic.appendChild(divCard);
+ });
+
+
+ // Introduction du bouton backFace
+ var cards = document.getElementsByClassName("backFace");
+ Array.from(cards).forEach((card) => {
+   card.addEventListener("click", flipCard);
+ });
 }
 
 // Fonction pour retourner les cartes

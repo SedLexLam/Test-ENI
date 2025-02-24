@@ -51,7 +51,7 @@ function init() {
   }
 
   // Choisir le nombre de cartes
-  sessionStorage.setItem("cardNumber", "6"); // Valeur par défaut
+  sessionStorage.setItem("cardNumber", "3"); // Valeur par défaut
   let choiceCardNumber = document.getElementById("choiceCardNumber");
   if (choiceCardNumber) {
     choiceCardNumber.style.display = "none";
@@ -62,7 +62,7 @@ function init() {
   }
 
   // Choisir le jeu de cartes
-  sessionStorage.setItem("userChoice", "animaux"); // Valeur par défaut
+  sessionStorage.setItem("userChoice", "alphabet"); // Valeur par défaut
   let choiceCard = document.getElementById("choiceCard");
   if (choiceCard) {
     choiceCard.addEventListener("change", activeChoiceCard); 
@@ -185,7 +185,7 @@ function activeChoiceCard () {
         document.getElementById("15card").style.display = "none";
         break;
 
-      case "legumes":
+      case "legume":
         document.getElementById("9card").style.display = "none";
         document.getElementById("12card").style.display = "none";
         document.getElementById("15card").style.display = "none";
